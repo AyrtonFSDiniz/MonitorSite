@@ -1,5 +1,7 @@
 using Monitor.Helpers;
 using System.Net;
+using System.Net.Mail;
+using static Monitor.EnvioEmailService;
 
 namespace Monitor;
 
@@ -35,10 +37,24 @@ public class Worker : BackgroundService
 
                 _logger.LogInformation("Worker rodando em: {time}", DateTimeOffset.Now);
 
+
+                Console.WriteLine("Enviando e-mail...");
+                EmailService email = new();
+                EmailMessage msg = new();
+
+                msg.Body = @$"<table align='center'>
+                           <tr>
+        
+                            <th bgcolor = 'RoyalBlue'><font color='white'><b> Vendedor </font></b></th>
+                            </table>";
+
+                msg.IsHtml = true;
+                msg.Subject = "Seu site está fora do ar!";
+                msg.ToEmail = "ayrtondefreitassilva@gmail.com";
+                email.SendEmailMessage(msg);
             }
 
-
-            await Task.Delay(timerDeVerificacao, stoppingToken); //para rodar a cada minuto
+            await Task.Delay(timerDeVerificacao, stoppingToken);
         }
     }
 }

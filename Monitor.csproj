@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-Monitor-CCE005AD-E921-43CF-BCB1-E6B863DC07BA</UserSecretsId>
+    <Configurations>Debug;Release;TesteExecutavel</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

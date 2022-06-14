@@ -18,6 +18,8 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
+            int timerDeVerificacao = 60000;
+            
             HttpStatusCode status = await Requesters.GetStatusFromUrl(_sites.Url);
             Console.WriteLine("######## =================== ########");
             Console.WriteLine("######## O site está rodando ########");
@@ -36,7 +38,7 @@ public class Worker : BackgroundService
             }
 
 
-            await Task.Delay(60000, stoppingToken); //para rodar a cada minuto
+            await Task.Delay(timerDeVerificacao, stoppingToken); //para rodar a cada minuto
         }
     }
 }
